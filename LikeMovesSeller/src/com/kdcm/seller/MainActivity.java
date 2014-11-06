@@ -2,7 +2,7 @@ package com.kdcm.seller;
 
 
 
-import com.kdcm.likemovesseller.R;
+import com.kdcm.seller.R;
 
 
 import android.app.TabActivity;

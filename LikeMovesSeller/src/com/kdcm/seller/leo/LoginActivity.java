@@ -4,7 +4,7 @@ package com.kdcm.seller.leo;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
-import com.kdcm.likemovesseller.R;
+import com.kdcm.seller.R;
 import com.kdcm.seller.web.HttpUtil;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
