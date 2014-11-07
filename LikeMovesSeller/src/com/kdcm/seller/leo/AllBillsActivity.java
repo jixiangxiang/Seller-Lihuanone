@@ -16,49 +16,70 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SimpleAdapter;
 
 public class AllBillsActivity extends ListActivity {
-	private String[] orders;
+	private String[] orders=new String[]{"1234"};
+	// 创建一个SimpleAdapter
+	 SimpleAdapter simpleAdapter;
+	 List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// 创建一个List集合，List集合的元素是Map
-		final List<Map<String, Object>> listItems = 
-				new ArrayList<Map<String, Object>>();
+//		Map<String, Object> listItem1 = new HashMap<String, Object>();
+//		listItem1.put("order", orders[0]);
+//		listItems.add(listItem1);
 		// 创建一个SimpleAdapter
-		final SimpleAdapter simpleAdapter = new SimpleAdapter(this, listItems,
-			R.layout.bill_list_detail, 
-			new String[] { "orderID"},
-			new int[] { R.id.orderID });
+		 simpleAdapter = new SimpleAdapter(this, listItems,
+				R.layout.bill_list_detail, new String[] { "orderNO","type","createTime","num","total" },
+				new int[] { R.id.order,R.id.type,R.id.time,R.id.num,R.id.total });
 		setListAdapter(simpleAdapter);
-		
-				JsonHttpResponseHandler response=new JsonHttpResponseHandler(){
+		JsonHttpResponseHandler response = new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					JSONObject response) {
 
 				super.onSuccess(statusCode, headers, response);
 				Log.i("all-bills", response.toString());
-				int result=response.getInt("result");
-				if (statusCode==200&result==1) {
-					JSONArray array=response.getJSONArray("list");
-					
+				int result = response.getInt("result");
+				if (statusCode == 200 & result == 1) {
+					JSONArray array = response.getJSONArray("list");
 					for (int i = 0; i < array.length(); i++) {
 						Map<String, Object> listItem = new HashMap<String, Object>();
-						listItem.put("orderID", array.getJSONObject(i).getString("order_no").toString());
+						listItem.put("orderNO", "订单号："+array.getJSONObject(i)
+								.getString("order_no").toString());
+						listItem.put("createTime", "创建时间："+array.getJSONObject(i).getString("create_time").toString());
+						listItem.put("total", "总价：￥"+array.getJSONObject(i).getString("total_price").toString());
+						
+						String type=array.getJSONObject(i).getString("type");
+						int sType=Integer.parseInt(type);
+						if(sType==3){
+							listItem.put("type", "充值");
+							listItem.put("num", "数量："+0);
+						}else{
+							listItem.put("type", "购物");
+							listItem.put("num", "数量"+array.getJSONObject(i).getJSONArray("shopping_carts").length());
+						}
 						listItems.add(listItem);
-						Log.d("orderID",  array.getJSONObject(i).getString("order_no").toString());
+						Log.d("orderID",
+								array.getJSONObject(i).getString("order_no")
+										.toString());
 					}
-					
-					simpleAdapter.notifyDataSetChanged();
-					
+					Message msg = new Message();
+					msg.what = 0x123;
+
+					handler.sendMessage(msg);
+//					simpleAdapter.notifyDataSetChanged();
+
 				}
-				
+
 			}
+
 			@Override
 			public void onFailure(int statusCode, Header[] headers,
 					Throwable throwable, JSONObject errorResponse) {
@@ -66,11 +87,21 @@ public class AllBillsActivity extends ListActivity {
 			}
 		};
 		HttpUtil.getAllBills(response);
-		
-		
-		
+
 	}
-	private void getBill(){
-		
-	}
+	Handler handler = new Handler()
+	{
+
+		public void handleMessage(Message msg)
+		{
+			if(msg.what == 0x123)
+			{
+				
+				// 使用adapter显示服务器响应
+				simpleAdapter.notifyDataSetChanged();
+
+			}
+		}
+	};
+
 }

@@ -40,7 +40,8 @@ public class HttpUtil {
 		String sdate;  
 		Date ddate = new Date();
 		sdate=(new SimpleDateFormat("yyyy-MM-dd")).format(ddate); 
-		String url=base_url+"m=user&a=getBills&date="+sdate+"&type=3";
+		String url=base_url+"m=user&a=getBills&type=3";
+//				+ "&date="+sdate;
 		client.post(url, res);
 		
 		
@@ -62,7 +63,8 @@ public class HttpUtil {
 		String sdate;  
 		Date ddate=new Date();
 		sdate=(new SimpleDateFormat("yyyy-MM-dd")).format(ddate);  
-		String url=base_url+"m=user&a=getBills&type=2&date="+sdate;
+		String url=base_url+"m=user&a=getBills&type=2";
+//				+ "&date="+sdate;
 		client.post(url, res);
 		
 		

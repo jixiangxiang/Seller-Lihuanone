@@ -67,6 +67,6 @@ public class LoginActivity extends Activity implements OnClickListener{
         	}
         };
 		HttpUtil.login(username.getText().toString(), password.getText().toString(), res);
-		HttpUtil.getAllBills(res);
+//		HttpUtil.getAllBills(res);
 	}
 }
