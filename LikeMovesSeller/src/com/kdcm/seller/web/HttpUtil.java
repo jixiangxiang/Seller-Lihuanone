@@ -84,7 +84,8 @@ public class HttpUtil {
 		Date ddate=new Date();
 		sdate=(new SimpleDateFormat("yyyy-MM-dd")).format(ddate);
 		
-		String url=base_url+"m=user&a=getBills&date="+sdate;
+		String url=base_url+"m=user&a=getBills";
+//				+ "&date="+sdate;
 		client.post(url,res);
 		
 		

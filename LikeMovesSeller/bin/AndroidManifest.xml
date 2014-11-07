@@ -7,9 +7,10 @@
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="15" />
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -24,8 +25,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kdcm.seller.MainActivity">
-            
+        <activity android:name="com.kdcm.seller.MainActivity" >
+        </activity>
+        <activity
+            android:name="com.kdcm.seller.leo.BillsActivity"
+            android:label="@string/title_activity_bills" >
+        </activity>
+        <activity
+            android:name="com.kdcm.seller.leo.AllBillsActivity"
+            android:label="@string/title_activity_all_bills" >
+        </activity>
+        <activity
+            android:name="com.kdcm.seller.leo.RechargeBillActivity"
+            android:label="@string/title_activity_recharge_bill" >
+        </activity>
+        <activity
+            android:name="com.kdcm.seller.leo.BuyBillActivity"
+            android:label="@string/title_activity_buy_bill" >
         </activity>
     </application>
 

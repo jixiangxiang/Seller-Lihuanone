@@ -3,6 +3,7 @@ package com.kdcm.seller;
 
 
 import com.kdcm.seller.R;
+import com.kdcm.seller.leo.BillsActivity;
 import com.kdcm.seller.leo.LoginActivity;
 
 import android.app.ListActivity;
@@ -37,7 +38,7 @@ public class MainActivity extends TabActivity  {
 		TabHost tabHost=getTabHost();
 		tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("商品选购").setContent(new Intent(this,LoginActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("用户相关").setContent(new Intent(this,LoginActivity.class)));
-		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("流水明细").setContent(new Intent(this,LoginActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("流水明细").setContent(new Intent(this,BillsActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("tab4").setIndicator("操作说明").setContent(new Intent(this,LoginActivity.class)));
 //		setContentView(R.layout.activity_main);	
 //		String[] arr={"商品选购","用户相关","流水明细","操作说明"};

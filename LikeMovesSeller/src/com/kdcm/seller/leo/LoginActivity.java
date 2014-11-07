@@ -45,19 +45,16 @@ public class LoginActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		JsonHttpResponseHandler res=new JsonHttpResponseHandler() {
-        	public void onFinish() { // 完成后调用，失败，成功，都要掉
+        	public void onFinish() { // 完成后调用，失败，成功，都要调用
             }
 
         	@Override
         	public void onSuccess(int statusCode, Header[] headers,
         			JSONObject response) {
-        		// TODO Auto-generated method stub
         		super.onSuccess(statusCode, headers, response);
         		Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-//        		Log.i("result", response.getString("result"));
         		int result=Integer.valueOf(response.getString("result"));
         		if (statusCode==200&result==1) {
-					
 					startActivity(intent);
 				}
 
