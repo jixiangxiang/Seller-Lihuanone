@@ -4,6 +4,7 @@ package com.kdcm.seller.leo;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
+import com.kdcm.seller.MainActivity;
 import com.kdcm.seller.R;
 import com.kdcm.seller.web.HttpUtil;
 import com.loopj.android.http.AsyncHttpClient;
@@ -12,6 +13,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,13 +53,14 @@ public class LoginActivity extends Activity implements OnClickListener{
         			JSONObject response) {
         		// TODO Auto-generated method stub
         		super.onSuccess(statusCode, headers, response);
-        		
-        		for (Header header : headers) {
-        			Log.d("head-name",header.getName());
-        			Log.d("head-value", header.getValue());
-					Log.e("head------", header.toString());
+        		Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+//        		Log.i("result", response.getString("result"));
+        		int result=Integer.valueOf(response.getString("result"));
+        		if (statusCode==200&result==1) {
+					
+					startActivity(intent);
 				}
-        		Log.i("cookie---", headers.toString()+"-------"+response.toString());
+
         	}
         	@Override
         	public void onFailure(int statusCode, Header[] headers,
