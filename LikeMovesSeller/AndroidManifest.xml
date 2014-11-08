@@ -43,6 +43,14 @@
             android:name="com.kdcm.seller.leo.BuyBillActivity"
             android:label="@string/title_activity_buy_bill" >
         </activity>
+        <activity
+            android:name="com.kdcm.seller.leo.IntroActivity"
+            android:label="@string/title_activity_intro" >
+        </activity>
+        <activity
+            android:name="com.kdcm.seller.BillDetailActivity"
+            android:label="@string/title_activity_bill_detail" >
+        </activity>
     </application>
 
 </manifest>
