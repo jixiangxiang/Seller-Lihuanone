@@ -22,6 +22,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SimpleAdapter;
 
 public class RechargeBillActivity extends ListActivity {
@@ -34,8 +35,8 @@ public class RechargeBillActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		// 创建一个SimpleAdapter
 		 simpleAdapter = new SimpleAdapter(this, listItems,
-				R.layout.bill_list_detail, new String[] { "orderNO","type","createTime","num","total" },
-				new int[] { R.id.order,R.id.type,R.id.time,R.id.num,R.id.total });
+				R.layout.bill_list_detail, new String[] { "orderNO","type","createTime","num","total","nickname" },
+				new int[] { R.id.order,R.id.type,R.id.time,R.id.num,R.id.total,R.id.nickname });
 		setListAdapter(simpleAdapter);
 		JsonHttpResponseHandler response = new JsonHttpResponseHandler() {
 			@Override
@@ -61,8 +62,9 @@ public class RechargeBillActivity extends ListActivity {
 							listItem.put("num", "数量："+0);
 						}else{
 							listItem.put("type", "购物");
-							listItem.put("num", "数量"+array.getJSONObject(i).getJSONArray("shopping_carts").length());
+							listItem.put("num", "数量:"+array.getJSONObject(i).getJSONArray("shopping_carts").length());
 						}
+						listItem.put("nickname", "消费者："+array.getJSONObject(i).getString("nickname").toString());
 						listItems.add(listItem);
 						Log.d("orderID",
 								array.getJSONObject(i).getString("order_no")

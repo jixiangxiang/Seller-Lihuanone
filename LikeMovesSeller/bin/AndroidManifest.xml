@@ -48,7 +48,7 @@
             android:label="@string/title_activity_intro" >
         </activity>
         <activity
-            android:name="com.kdcm.seller.BillDetailActivity"
+            android:name="com.kdcm.seller.leo.BillDetailActivity"
             android:label="@string/title_activity_bill_detail" >
         </activity>
     </application>

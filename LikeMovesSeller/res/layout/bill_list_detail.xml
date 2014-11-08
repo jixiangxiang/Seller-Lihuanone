@@ -30,6 +30,13 @@
 	android:paddingLeft="10dp"
 	/>
 <!-- 定义一个TextView，用于作为列表项的一部分。 -->
+<TextView android:id="@+id/nickname"
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"
+	android:textSize="12sp"
+	android:paddingLeft="10dp"
+	/>
+<!-- 定义一个TextView，用于作为列表项的一部分。 -->
 <TextView android:id="@+id/total"
 	android:layout_width="wrap_content" 
 	android:layout_height="wrap_content"
@@ -43,6 +50,7 @@
 	android:textSize="12sp"
 	android:paddingLeft="10dp"
 	/>
+
 </LinearLayout>
 
 </LinearLayout>
