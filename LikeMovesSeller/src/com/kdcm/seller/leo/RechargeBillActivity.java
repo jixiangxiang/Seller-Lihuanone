@@ -46,7 +46,7 @@ public class RechargeBillActivity extends ListActivity {
 				super.onSuccess(statusCode, headers, response);
 				Log.i("all-bills", response.toString());
 				int result = response.getInt("result");
-				if (statusCode == 200 & result == 1) {
+				if (statusCode == 200 & result == 1&response.getInt("total_count")!=0) {
 					JSONArray array = response.getJSONArray("list");
 					for (int i = 0; i < array.length(); i++) {
 						Map<String, Object> listItem = new HashMap<String, Object>();
